@@ -4,7 +4,7 @@ class User < ApplicationRecord
   validates :content, length: { maximum: 2000 }, presence: true
   validates :start_at, presence: true
   validates :end_at, presence: true
-  validates :start_at_should_be_before_end_at
+  validate :start_at_should_be_before_end_at
 
   def self.find_or_create_from_auth_hash!(auth_hash)
     provider = auth_hash[:provider]
