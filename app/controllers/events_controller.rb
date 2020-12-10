@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    pevent = current_user.created_events.build(event_params)
+    @event = current_user.created_events.build(event_params)
 
     if @event.save
       redirect_to @event, notice: '作成しました'
