@@ -6,6 +6,8 @@ class Event < ApplicationRecord
   validates :end_at, presence: true
   validate :start_at_should_be_before_end_at
 
+  belongs_to :owner, class_name: "User"
+
   private
 
   def start_at_should_be_before_end_at
