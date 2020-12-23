@@ -6,7 +6,13 @@ class Event < ApplicationRecord
   validates :end_at, presence: true
   validate :start_at_should_be_before_end_at
 
-  belongs_to :owner, class_name: "User"
+  belongs_to :owner, class_name: 'User'
+
+  def created_by?(user)
+    return false unless user
+
+    owner_id == user.id
+  end
 
   private
 
