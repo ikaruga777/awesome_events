@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  searchkick language: 'japanese'
+
   validates :name, length: { maximum: 50 }, presence: true
   validates :place, length: { maximum: 100 }, presence: true
   validates :content, length: { maximum: 2000 }, presence: true
@@ -13,6 +15,16 @@ class Event < ApplicationRecord
     return false unless user
 
     owner_id == user.id
+  end
+
+  def search_data
+    {
+      name: name,
+      place: place,
+      content: content,
+      owner_name: owner&.name,
+      start_at: start_at
+    }
   end
 
   private
